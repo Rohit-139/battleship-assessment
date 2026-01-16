@@ -1,21 +1,26 @@
 Battleship Game Simulation
 
 PLAYER 1
-- - - - - -
-- O - X - -
-- - B - - -
-- - - - - -
-- - - - - -
-- - - - - O
+- - - - - - - -
+- - O X - - - -
+- - B - B - - -
+- - - - - - - -
+- - - - - B - -
+- - - O B B - -
+- - - - - - - -
+- - - - - - - -
 
 PLAYER 2
-- - - - - -
-- - O O - -
-- - B B O -
-- - - - - -
-- - - - - -
-- - - - - -
+- - - - - - - -
+- - - - - - - -
+- B B X - O - -
+- - B - - - - -
+- B - - - - - -
+- - - O - - - -
+- - - - - - - -
+- - - - - - - -
 
-PLAYER 1 hit 1 hits, Player 1 Won 
+PLAYER 1 and PLAYER 2 Both hit the Same number of hits : Match is Drawn
           
-Player 2 hits = 0
+Player 1 hits = 1 
+Player 2 hits = 1
