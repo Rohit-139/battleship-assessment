@@ -1,5 +1,5 @@
 class EmptyArrException < StandardError
-	def initialize(msg = 'Empty Array Exception : please put valid array')
+	def initialize(msg = 'Cannot put empty file in program')
 		super(msg)
 	end
 end
@@ -11,7 +11,7 @@ class LessInputException < StandardError
 end
 
 class InvalidInputType < StandardError 
-	def initialize(msg = 'The file contain String values , This is invalid')
+	def initialize(msg = 'The input contain String values , This is invalid')
 		super(msg)
 	end
 end
