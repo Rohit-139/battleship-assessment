@@ -1,6 +1,5 @@
 require_relative ("./ship.rb")
 require 'byebug'
-require ("./exception.rb")
 require ("./validation.rb")
 
 class Main 
@@ -26,8 +25,8 @@ class Main
       ship_index = ship.split(',')
       arr[ship_index[0].to_i][ship_index[1].to_i] = 'B'
     end
-      player = Ship.new
-      player.empty_arr(arr)
+    empty_ship = Ship.new
+    empty_ship.empty_arr(arr)
   end
 
   def print_output(filename, grid1, grid2)
@@ -44,19 +43,19 @@ class Main
     hit1 = player.check_hit(grid1)
     hit2 = player.check_hit(grid2)
     if hit1 > hit2
-      File.open(filename,"a") do |file|
+      File.open(filename,'a') do |file|
         file.puts("\nPLAYER 1 hit #{hit1} hits, Player 1 Won 
           \nPlayer 2 hits = #{hit2}") 
       end
     elsif hit1 < hit2 
-      File.open(filename,"a") do |file|
-      file.puts("\nPLAYER 2 hit #{hit2} hits, Player 2 Won \n print_player 1 hits
-        = #{hit1}")
+      File.open(filename,'a') do |file|
+        file.puts("\nPLAYER 2 hit #{hit2} hits, Player 2 Won \nprint_player 1 hits
+          = #{hit1}")
       end
     else 
-      File.open(filename,"a") do |file|
-      file.puts("\nPLAYER 1 and PLAYER 2 Both hit the Same number of hits : Match is Drawn
-        \nPlayer 1 hits = #{hit1} \nPlayer 2 hits = #{hit2}") 
+      File.open(filename,'a') do |file|
+        file.puts("\nPLAYER 1 and PLAYER 2 Both hit the Same number of hits : Match is Drawn
+          \nPlayer 1 hits = #{hit1} \nPlayer 2 hits = #{hit2}") 
       end
     end
   end
@@ -66,7 +65,7 @@ end
 arr = Ship.taking_input
 validation = Validation.new
 if validation.check_all_validations(arr)
-  puts "Program Exited"
+  puts 'Program Exited'
 else
   ob = Main.new
   p1 = arr[2].chomp.split(':').to_set
@@ -77,7 +76,7 @@ else
   gr2 = ob.grid_array(arr)
   ob.game_logic(gr1, p1, p1_m)
   ob.game_logic(gr2, p2, p2_m)
-  ob.print_output("output.txt", gr1, gr2)
-  ob.result("output.txt", gr1, gr2)
-    puts 'Program runs succesfully Check output in Output.txt file'
+  ob.print_output('output.txt', gr1, gr2)
+  ob.result('output.txt', gr1, gr2)
+  puts 'Program runs succesfully Check output in Output.txt file'
 end
