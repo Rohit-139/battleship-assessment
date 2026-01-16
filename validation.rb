@@ -1,12 +1,10 @@
 class Validation
-	#return false if String contains any character
 	# Note:-
 	# cordinates = cords
 	# players = ply
 	# gridSize = gs
 	# missile = msl
-
-
+  private
   def is_valid_integer?(o)
     true if Integer(o) rescue false
   end
@@ -14,43 +12,43 @@ class Validation
   def check_valid?(arr)
     arr.each_with_index do |line,index|
     begin
-    l=line.delete(',:')
+    l = line.delete(',:')
     if !is_valid_integer?(l)
-     raise InvalidInputType
+      raise InvalidInputType
     end
     
-    rescue InvalidInputType => e
+     rescue InvalidInputType => e
       puts e.message
       puts "invalid String in line #{index+1}"
       return true
+     end
     end
-   end
       return false
   end
 
 
   def check_empty?(arr)
     begin
-     if arr.empty? 
-       raise EmptyArrException
-     end 
-       rescue EmptyArrException => e 
-       puts e.message
-     return true
-    end
-     return false
+      if arr.empty? 
+        raise EmptyArrException
+      end 
+        rescue EmptyArrException => e 
+        puts e.message
+        return true
+        end
+    return false
   end
 
   def check_length?(arr)
     begin
-     if arr.size < 7
-       raise LessInputException 
-     end
-       rescue LessInputException => e
-       puts e.message
-       return true
-    end
-      return false
+      if arr.size < 7
+        raise LessInputException 
+      end
+        rescue LessInputException => e
+          puts e.message
+          return true
+        end
+    return false
   end
 
   def check_gridsize?(arr)
@@ -64,10 +62,10 @@ class Validation
         raise GridSizeException
       end
         rescue GridSizeException => e
-        puts e.message
-        return true
-      end
-       return false
+          puts e.message
+          return true
+        end
+    return false
   end 
 
   def check_ships_and_cordinates(arr)
@@ -81,9 +79,9 @@ class Validation
         raise InvalidCordAndShip
       end
         rescue InvalidCordAndShip => e 
-        puts e.message
-      return true
-     end
+          puts e.message
+          return true
+        end
      return false
   end
 
@@ -98,40 +96,34 @@ class Validation
         raise InvalidCordAndMissile
       end
         rescue InvalidCordAndMissile => e 
-        puts e.message
-        return true
+          puts e.message
+          return true
         end
-      return false
+     return false
   end
 
 
   def check_between?(size,arr)
-   !arr.all? { |e| e < size && e >= 0 }
+    !arr.all? { |e| e < size && e >= 0 }
   end
 
   def check_cordinate_valid?(arr)
-		size = arr[0].to_i
-		cords_ply1 = arr[2].split(/[:,]/).map(&:to_i)
-		cords_ply2 = arr[3].split(/[:,]/).map(&:to_i)
-		cords_msl1 = arr[5].split(/[:,]/).map(&:to_i)
-		cords_msl2 = arr[6].split(/[:,]/).map(&:to_i)
-   	begin
-	    if check_between?(size,cords_ply1)
-	      raise InvalidCordinates , "The Cordinates should be between 0 and #{size-1}" 
-	    elsif check_between?(size,cords_ply2)
-	      raise InvalidCordinates , "The Cordinates should be between 0 and #{size-1}"
-	    elsif check_between?(size,cords_msl1)
-	      raise InvalidCordinates , "The Cordinates should be between 0 and #{size-1}"
-	    elsif check_between?(size,cords_msl2)
-	      raise InvalidCordinates , "The Cordinates should be between 0 and #{size-1}"
-	    end
-   	    rescue InvalidCordinates => e
-    	  puts e.message
-      	return true
-   	end
-   return false
+    size = arr[0].to_i
+      coordinates_index = [2,3,5,6]
+      coordinates_index.each do |coordinate|
+        cord = arr[coordinate].split(/[:,]/).map(&:to_i)
+        begin
+        if check_between?(size,cord)
+          raise InvalidCordinates , "The Cordinates should be between 0 and #{size-1}" 
+        end
+          rescue InvalidCordinates => e 
+            puts e.message
+            return true
+          end
+      end
+    return false
   end
-
+  public
   def check_all_validations(arr)	
     if check_empty?(arr) || check_length?(arr) || check_valid?(arr) || check_gridsize?(arr) || check_cordinate_valid?(arr) || check_ships_and_cordinates(arr) || check_missile_and_cordinates(arr)
  		  return true
@@ -139,7 +131,5 @@ class Validation
       return false
     end
  end
-
-
 end
 

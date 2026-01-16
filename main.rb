@@ -23,20 +23,20 @@ class Main
     end
 
     ship_cordinates.each do |ship|
-     ship_index = ship.split(',')
-     arr[ship_index[0].to_i][ship_index[1].to_i] = 'B'
+      ship_index = ship.split(',')
+      arr[ship_index[0].to_i][ship_index[1].to_i] = 'B'
     end
-    player = Ship.new
-    player.empty_arr(arr)
+      player = Ship.new
+      player.empty_arr(arr)
   end
 
   def print_output(filename, grid1, grid2)
     output = Ship.new 
     output.clear_output(filename)
-    output.print_player(filename,1)
-    output.write_2d_array_to_file(filename,grid1)
-    output.print_player(filename,2)
-    output.write_2d_array_to_file(filename,grid2)
+    output.print_player(filename, 1)
+    output.write_2d_array_to_file(filename, grid1)
+    output.print_player(filename, 2)
+    output.write_2d_array_to_file(filename, grid2)
   end
 
   def result(filename, grid1, grid2)
@@ -46,16 +46,19 @@ class Main
     if hit1 > hit2
       File.open(filename,"a") do |file|
         file.puts("\nPLAYER 1 hit #{hit1} hits, Player 1 Won 
-          \nPlayer 2 hits = #{hit2}") end
+          \nPlayer 2 hits = #{hit2}") 
+      end
     elsif hit1 < hit2 
-     File.open(filename,"a") do |file|
-     file.puts("\nPLAYER 2 hit #{hit2} hits, Player 2 Won \n print_player 1 hits
-       = #{hit1}") end
+      File.open(filename,"a") do |file|
+      file.puts("\nPLAYER 2 hit #{hit2} hits, Player 2 Won \n print_player 1 hits
+        = #{hit1}")
+      end
     else 
-     File.open(filename,"a") do |file|
-     file.puts("PLAYER 1 and PLAYER 2 Both hit the Same number of hits : Match is Drawn
-      \nPlayer 1 hits = #{hit1} \nPlayer 2 hits = #{hit2}") end
-     end
+      File.open(filename,"a") do |file|
+      file.puts("\nPLAYER 1 and PLAYER 2 Both hit the Same number of hits : Match is Drawn
+        \nPlayer 1 hits = #{hit1} \nPlayer 2 hits = #{hit2}") 
+      end
+    end
   end
 end
 
@@ -76,5 +79,5 @@ else
   ob.game_logic(gr2, p2, p2_m)
   ob.print_output("output.txt", gr1, gr2)
   ob.result("output.txt", gr1, gr2)
-  puts "Program runs succesfully Check output in Output.txt file"
+    puts 'Program runs succesfully Check output in Output.txt file'
 end
